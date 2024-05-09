@@ -23,7 +23,8 @@ class User < ActiveRecord::Base
     errors.add :base, "Unable to create your subscription. #{e.message}"
     false
   end
-
+  
+  # Update membership plan
   def update_plan(role)
     self.role_ids = []
     self.add_role(role.name)
