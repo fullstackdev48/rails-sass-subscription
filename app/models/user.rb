@@ -11,7 +11,8 @@ class User < ActiveRecord::Base
   attr_accessor :card_token
   before_create :check_recurly
   before_destroy :cancel_subscription
-
+  
+  # Set user name
   def name
     name = "#{first_name.capitalize} #{last_name.capitalize}"
   end
@@ -53,7 +54,8 @@ class User < ActiveRecord::Base
     errors.add :base, "Unable to update your subscription. #{e.message}"
     false
   end
-
+  
+  # Cancel subscription
   def cancel_subscription
     unless customer_id.nil?
       customer = Recurly::Account.find(customer_id)
